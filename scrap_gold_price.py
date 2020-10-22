@@ -35,11 +35,11 @@ for year in years:
       tabels = soup.findAll("table",class_="table-data dayyeartable")
 
       #scrap days
-      day_headings = soup.findAll("h4")
-      days = []
-      for day in day_headings:
-        days.append(str(day.string)[-16:])
-      days.reverse()
+      date_headings = soup.findAll("h4")
+      dates = []
+      for date in date_headings:
+        dates.append(str(date.string)[14:])
+      dates.reverse()
 
       #scraping gold price for each day from the tabels
       prices = []
@@ -50,7 +50,7 @@ for year in years:
       prices.reverse()
 
       #store scraped data in to pandas DataFrame
-      df = pd.DataFrame({"day":days,"price":prices})
+      df = pd.DataFrame({"date":dates,"price":prices})
 
       #append df to main DataFrame gold_prices
       gold_prices = pd.concat([gold_prices,df],axis=0)
